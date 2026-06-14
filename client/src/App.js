@@ -1,66 +1,33 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Dashboard from './pages/Dashboard';
+import Cases from './pages/Cases';
+import Upload from './pages/Upload';
+import Correlate from './pages/Correlate';
+import './styles/global.css';
+import RouteMap from './pages/RouteMap';
+import Reports from './pages/Reports';
 
-import Dashboard from "./pages/Dashboard";
-import Cases from "./pages/Cases";
-import UploadEvidence from "./pages/UploadEvidence";
-import SuspectList from "./pages/SuspectList";
-import MovementTimeline from "./pages/MovementTimeline";
-import RouteMap from "./pages/RouteMap";
+// inside <Routes>
+
+
+// inside <Routes>
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
+    <Router>
+      <Sidebar />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/cases" element={<Cases />} />
+        <Route path="/upload" element={<Upload />} />
+        <Route path="/correlate" element={<Correlate />} />
+        <Route path="/map" element={<RouteMap />} />
+        <Route path="/reports" element={<Reports />} />
 
-          {/* Dashboard */}
-          <Route
-            path="/"
-            element={<Dashboard />}
-          />
-
-          {/* Case Management */}
-          <Route
-            path="/cases"
-            element={<Cases />}
-          />
-
-          <Route
-            path="/upload"
-            element={<UploadEvidence />}
-          />
-
-          {/* Suspect Ranking */}
-          <Route
-            path="/suspects"
-            element={<SuspectList />}
-          />
-
-          {/* Movement Timeline */}
-          <Route
-            path="/movement/:number"
-            element={<MovementTimeline />}
-          />
-
-          {/* Route Map */}
-          <Route
-            path="/map/:number"
-            element={<RouteMap />}
-          />
-
-        </Routes>
-      </BrowserRouter>
-
-      <div
-        style={{
-          textAlign: "center",
-          padding: "10px",
-          marginTop: "20px",
-        }}
-      >
-        Tower Dump Analysis For Crime Investigation
-      </div>
-    </>
+      </Routes>
+    </Router>
   );
 }
 
